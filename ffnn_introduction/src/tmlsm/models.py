@@ -99,3 +99,11 @@ class ICNN(eqx.Module):
         for layer, act in zip(self.layers, self.activations):
             x = act(layer(x))
         return x
+
+
+class Sobolev(eqx.Module):
+    # Differential-Layer: x -> (NN(x), dNN/dx)
+    net: eqx.Module
+
+    def __call__(self, x):
+        return jax.value_and_grad(self.net)(x)
