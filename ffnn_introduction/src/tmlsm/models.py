@@ -27,11 +27,11 @@ class Model(eqx.Module):
 
         #convex layers
         # self.layers = (
-        #     klax.nn.Linear("scalar", 8, weight_init=he_normal(), key=key),
-        #     klax.nn.Linear(8, 8, weight_init=he_normal(), weight_wrap=klax.NonNegative, key=key),
-        #     # klax.nn.Linear(8, 8, weight_init=he_normal(), weight_wrap=klax.NonNegative, key=key),
-        #     klax.nn.Linear(8, 8, weight_init=he_normal(), weight_wrap=klax.NonNegative, key=key),
-        #     klax.nn.Linear(8, "scalar", weight_init=he_normal(), weight_wrap=klax.NonNegative, use_bias=False, key=key),
+        #     klax.nn.Linear("scalar", nodes, weight_init=he_normal(), key=key),
+        #     klax.nn.Linear(nodes, nodes, weight_init=he_normal(), weight_wrap=klax.NonNegative, key=key),
+        #     # klax.nn.Linear(nodes, nodes, weight_init=he_normal(), weight_wrap=klax.NonNegative, key=key),
+        #     # klax.nn.Linear(nodes, nodes, weight_init=he_normal(), weight_wrap=klax.NonNegative, key=key),
+        #     klax.nn.Linear(nodes, "scalar", weight_init=he_normal(), weight_wrap=klax.NonNegative, key=key),
         # )
 
         self.activations = (
