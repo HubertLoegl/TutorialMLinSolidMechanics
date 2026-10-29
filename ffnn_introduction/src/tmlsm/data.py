@@ -22,3 +22,14 @@ def bathtub():
     y_cal = np.concatenate([y[0:240], y[330:420]])
 
     return x, y, x_cal, y_cal
+
+
+def f1(x):
+    return x[..., 0] ** 2 - x[..., 1] ** 2
+# [..., i] Takes the i-th element in the last dimension
+
+def f2(x):
+    return x[..., 0] ** 2 + 0.5 * x[..., 1] ** 2
+
+def grad_f2(x):
+    return np.stack([2.0 * x[..., 0], x[..., 1]], axis=-1)
