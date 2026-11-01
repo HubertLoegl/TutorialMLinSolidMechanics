@@ -17,27 +17,25 @@ class Model(eqx.Module):
     activations: tuple[Callable, ...]
 
     def __init__(self, *, key: PRNGKeyArray):
-        nodes = 1
-        self.layers = (
-            klax.nn.Linear("scalar", nodes, weight_init=he_normal(), key=key),
-            klax.nn.Linear(nodes, nodes, weight_init=he_normal(), key=key),
-            klax.nn.Linear(nodes, nodes, weight_init=he_normal(), key=key),
-            klax.nn.Linear(nodes, nodes, weight_init=he_normal(), key=key),
-            klax.nn.Linear(nodes, "scalar", weight_init=he_normal(), key=key),
-        )
-
-        #convex layers
+        nodes = 16
         # self.layers = (
         #     klax.nn.Linear("scalar", nodes, weight_init=he_normal(), key=key),
-        #     klax.nn.Linear(nodes, nodes, weight_init=he_normal(), weight_wrap=klax.NonNegative, key=key),
-        #     # klax.nn.Linear(nodes, nodes, weight_init=he_normal(), weight_wrap=klax.NonNegative, key=key),
-        #     # klax.nn.Linear(nodes, nodes, weight_init=he_normal(), weight_wrap=klax.NonNegative, key=key),
-        #     klax.nn.Linear(nodes, "scalar", weight_init=he_normal(), weight_wrap=klax.NonNegative, key=key),
+        #     klax.nn.Linear(nodes, nodes, weight_init=he_normal(), key=key),
+        #     klax.nn.Linear(nodes, nodes, weight_init=he_normal(), key=key),
+        #     klax.nn.Linear(nodes, nodes, weight_init=he_normal(), key=key),
+        #     klax.nn.Linear(nodes, "scalar", weight_init=he_normal(), key=key),
         # )
 
+        # convex layers
+        self.layers = (
+            klax.nn.Linear("scalar", nodes, weight_init=he_normal(), key=key),
+            klax.nn.Linear(nodes, nodes, weight_init=he_normal(), weight_wrap=klax.NonNegative, key=key),
+            # klax.nn.Linear(nodes, nodes, weight_init=he_normal(), weight_wrap=klax.NonNegative, key=key),
+            # klax.nn.Linear(nodes, nodes, weight_init=he_normal(), weight_wrap=klax.NonNegative, key=key),
+            klax.nn.Linear(nodes, "scalar", weight_init=he_normal(), weight_wrap=klax.NonNegative, key=key),
+        )
+
         self.activations = (
-            jax.nn.softplus,
-            jax.nn.softplus,
             jax.nn.softplus,
             jax.nn.softplus,
             lambda x: x,
