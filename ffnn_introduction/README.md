@@ -6,4 +6,4 @@ We recommend using the [uv package manager](https://docs.astral.sh/uv/) for this
 uv run main.py
 ```
 
-This will create a _virtual environment_, install all required packages, and run the `main.py` script. For more details on python project management with uv checkout the [documentation](https://docs.astral.sh/uv/).
+This will create a _virtual environment_, install all required packages, and run the `src/task1/main.py` script. For more details on python project management with uv checkout the [documentation](https://docs.astral.sh/uv/).
