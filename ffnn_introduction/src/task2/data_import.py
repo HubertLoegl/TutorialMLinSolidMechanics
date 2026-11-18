@@ -1,9 +1,12 @@
 import numpy as np
 
-def read_data_from_file(filename= str) -> np.ndarray:
+def read_data_from_file(filename= str, is_path = False ) -> np.ndarray:
     if filename == "" or filename is None:
         raise ValueError("Filename cannot be empty")
-    path = f"../../../hyperelasticity/calibration/{filename}.txt"
+    if is_path:
+        path = filename
+    else:
+        path = f"../../../hyperelasticity/calibration/{filename}.txt"
 
 
     with open(path, "r") as f:
